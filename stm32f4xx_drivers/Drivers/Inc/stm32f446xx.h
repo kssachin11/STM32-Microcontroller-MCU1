@@ -7,7 +7,12 @@
 
 #ifndef INC_STM32F446XX_H_
 #define INC_STM32F446XX_H_
-// DEFINING BASE ADDRESS OF VARIOUS MEMORIES
+
+#include<stdint.h>   // for defining uint32.....
+#define __vo volatile
+
+// DEFINING BASE ADDRESS OF VARIOUS MEMORIES - FLASH AND SRAM
+
 #define FLASH_BASEADDR			0x08000000U  // MAIN MEMORY
 #define SRAM1_BASEADDR			0x20000000U
 #define SRAM2_BASEADDR			0x2001C000U
@@ -38,10 +43,13 @@
 #define I2C1_BASEADDR			(APB1PERIPH_BASEADDR + 0x5400)
 #define I2C2_BASEADDR			(APB1PERIPH_BASEADDR + 0x5800)
 #define I2C3_BASEADDR			(APB1PERIPH_BASEADDR + 0x5C00)
+
 #define SPI2_BASEADDR			(APB1PERIPH_BASEADDR + 0x3800)
 #define SPI3_BASEADDR			(APB1PERIPH_BASEADDR + 0x3C00)
+
 #define USART2_BASEADDR			(APB1PERIPH_BASEADDR + 0x4400)
 #define USART3_BASEADDR			(APB1PERIPH_BASEADDR + 0x4800)
+
 #define UART4_BASEADDR			(APB1PERIPH_BASEADDR + 0x4C00)
 #define UART5_BASEADDR			(APB1PERIPH_BASEADDR + 0x5000)
 
@@ -49,10 +57,30 @@
 // DEFINE BASE ADDRESS OF PERIPHERAL HANGING ON APB2 BUS
 #define SPI1_BASEADDR			(APB2PERIPH_BASEADDR + 0x3000)
 #define SPI4_BASEADDR			(APB2PERIPH_BASEADDR + 0x3400)
+
 #define USART1_BASEADDR			(APB2PERIPH_BASEADDR + 0x1000)
 #define USART6_BASEADDR			(APB2PERIPH_BASEADDR + 0x1400)
+
 #define EXTI_BASEADDR			(APB2PERIPH_BASEADDR + 0x3C00)
 #define SYSCFG_BASEADDR			(APB2PERIPH_BASEADDR + 0x3800)
+
+
+// CREATING PERIPHERAL STRUCTURE
+
+typedef struct{
+
+	__vo uint32_t MODER;	//GPIO port mode register
+	__vo uint32_t OTYPER;	//GPIO port output type register
+	__vo uint32_t OSPEEDER;	//GPIO port output speed register
+	__vo uint32_t PUPDR;	//GPIO port pull-up/pull-down register
+	__vo uint32_t IDR;		//GPIO port input data register
+	__vo uint32_t ODR;		//GPIO port output data register
+	__vo uint32_t BSRR;		//GPIO port bit set/reset register
+	__vo uint32_t LCKR;		//GPIO port configuration lock register
+	__vo uint32_t AFR[2];	/* created an array for alternate function register instead of writing the 2 registers
+							AF[1];GPIO ALTERNATE FUNCTION HIGH REGISTER , AF[0]:GPIO ALTERNATE FUNCTION LOW REGISTER*/
+
+}GPIO_RegDef_t;// gpio register definition structure
 
 
 #endif /* INC_STM32F446XX_H_ */
