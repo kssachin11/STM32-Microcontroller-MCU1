@@ -9,6 +9,7 @@
 #define INC_STM32F446XX_H_
 
 #include<stdint.h>   // for defining uint32.....
+
 #define __vo volatile
 
 // DEFINING BASE ADDRESS OF VARIOUS MEMORIES - FLASH AND SRAM
@@ -81,6 +82,20 @@ typedef struct{
 							AF[1];GPIO ALTERNATE FUNCTION HIGH REGISTER , AF[0]:GPIO ALTERNATE FUNCTION LOW REGISTER*/
 
 }GPIO_RegDef_t;// gpio register definition structure
+
+
+
+/*
+ * Peripheral definitions (Peripheral base addresses typecasted to xxx_RegDef_t
+ */
+#define GPIOA 				 ((GPIO_RegDef_t*)GPIOA_BASEADDR) // to define macro, TYPE CASTING GPIOA TO GPIO
+#define GPIOB 				 ((GPIO_RegDef_t*)GPIOB_BASEADDR)
+#define GPIOC 				 ((GPIO_RegDef_t*)GPIOC_BASEADDR)
+#define GPIOD 				 ((GPIO_RegDef_t*)GPIOD_BASEADDR)
+#define GPIOE 				 ((GPIO_RegDef_t*)GPIOE_BASEADDR)
+#define GPIOF  				 ((GPIO_RegDef_t*)GPIOF_BASEADDR)
+#define GPIOG 			   	 ((GPIO_RegDef_t*)GPIOG_BASEADDR)
+#define GPIOH 				 ((GPIO_RegDef_t*)GPIOH_BASEADDR)
 
 
 #endif /* INC_STM32F446XX_H_ */
