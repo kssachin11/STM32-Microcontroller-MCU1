@@ -4,6 +4,7 @@
  *  Created on: Jun 2, 2024
  *      Author: Sachin K S
  */
+// Contains MCU specific data
 
 #ifndef INC_STM32F446XX_H_
 #define INC_STM32F446XX_H_
@@ -233,6 +234,18 @@ typedef struct{
 
  */
 #define SYSCFG_PCLK_DN()					(RCC->APBENR &= ~(1<<14)
+
+
+
+
+//some generic macros
+
+#define ENABLE					1
+#define DISABLE					0
+#define SET						ENABLE
+#define RESET					DISABLE
+#define GPIO_PIN_SET			SET
+#define GPIO_PIN_RESET			RESET
 
 #endif /* INC_STM32F446XX_H_ */
 
