@@ -71,7 +71,64 @@ void GPIO_DeInit(GPIO_RegDef_t *pGPIOx){
 
  */
 
-void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi){
+void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
+{
+	if(EnorDi == ENABLE)
+	{
+		if (pGPIOx==GPIOA)
+		{
+			GPIOA_PERI_CLOCK_ENABLE();  // clock enable macro
+		}else if(pGPIOx==GPIOB)
+		{
+			GPIOB_PERI_CLOCK_ENABLE();
+		}else if(pGPIOx==GPIOC)
+		{
+			GPIOC_PERI_CLOCK_ENABLE();
+		}else if(pGPIOx==GPIOD)
+		{
+			GPIOD_PERI_CLOCK_ENABLE();
+		}else if(pGPIOx==GPIOE)
+		{
+			GPIOE_PERI_CLOCK_ENABLE();
+		}else if(pGPIOx==GPIOF)
+		{
+			GPIOF_PERI_CLOCK_ENABLE();
+		}else if(pGPIOx==GPIOG)
+		{
+			GPIOG_PERI_CLOCK_ENABLE();
+		}else if(pGPIOx==GPIOH)
+		{
+			GPIOH_PERI_CLOCK_ENABLE();
+		}
+	}else
+
+	{
+		if (pGPIOx==GPIOA)
+			{
+				GPIOA_PERI_CLOCK_DISABLE();  // clock enable macro
+			}else if(pGPIOx==GPIOB)
+			{
+				GPIOB_PERI_CLOCK_DISABLE();
+			}else if(pGPIOx==GPIOC)
+			{
+				GPIOC_PERI_CLOCK_DISABLE();
+			}else if(pGPIOx==GPIOD)
+			{
+				GPIOD_PERI_CLOCK_DISABLE();
+			}else if(pGPIOx==GPIOE)
+			{
+				GPIOE_PERI_CLOCK_DISABLE();
+			}else if(pGPIOx==GPIOF)
+			{
+				GPIOF_PERI_CLOCK_DISABLE();
+			}else if(pGPIOx==GPIOG)
+			{
+				GPIOG_PERI_CLOCK_DISABLE();
+			}else if(pGPIOx==GPIOH)
+			{
+				GPIOH_PERI_CLOCK_DISABLE();
+			}
+	}
 
 }
 
@@ -195,5 +252,12 @@ void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber){
  * @Note              -
 
  */
-void GPIO_IRQConfig(uint8_t IRQNumber,uint8_t IRQPriority, uint8_t EnorDi);
-void GPIO_IRQHandling(uint8_t PinNumber);  // When interrupt occurs,this function can be called to process the interrupt
+void GPIO_IRQConfig(uint8_t IRQNumber,uint8_t IRQPriority, uint8_t EnorDi){
+
+
+}
+
+void GPIO_IRQHandling(uint8_t PinNumber){
+
+	// When interrupt occurs,this function can be called to process the interrupt
+}
