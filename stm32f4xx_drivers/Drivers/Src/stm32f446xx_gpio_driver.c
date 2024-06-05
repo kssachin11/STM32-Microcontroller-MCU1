@@ -36,7 +36,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
 	if(pGPIOHandle ->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG)
 	{
 		// non-interrupt mode
-		temp = (pGPIOHandle ->GPIO_PinConfig.GPIO_PinMode << (2*pGPIOHandle -> GPIO_PinConfig.GPIO_PinNumber));
+		temp = (pGPIOHandle ->GPIO_PinConfig.GPIO_PinMode << (2*(pGPIOHandle -> GPIO_PinConfig.GPIO_PinNumber)));
 		pGPIOHandle ->pGPIOx-> MODER &= ~(0x3 <<pGPIOHandle -> GPIO_PinConfig.GPIO_PinNumber );
 		pGPIOHandle ->pGPIOx-> MODER |= temp;
 
