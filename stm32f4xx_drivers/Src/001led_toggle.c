@@ -20,10 +20,10 @@ int main(void)
 	Gpio_Led.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_5;  // selecting pin number
 	Gpio_Led.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;		// selecting pin mode
 	Gpio_Led.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;  // Selecting speed
-	Gpio_Led.GPIO_PinConfig.GPIO_Pin0PType = GPIO_OP_TYPE_PP; // output type
+	Gpio_Led.GPIO_PinConfig.GPIO_Pin0PType = GPIO_OP_TYPE_OD; // output type
 	Gpio_Led.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;  //selecting pin push pull
 
-	GPIO_PeriClockControl(GPIOA, ENABLE);  // enabling peripheral clk
+	GPIO_PeriClockControl(GPIOA,ENABLE);  // enabling peripheral clk
 	GPIO_Init(&Gpio_Led);
 
 	while(1)
