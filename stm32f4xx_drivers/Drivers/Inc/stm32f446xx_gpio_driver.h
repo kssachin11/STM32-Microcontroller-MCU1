@@ -121,9 +121,9 @@ void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
 /*
  * IRQ Configuration and ISR handling
  */
-void GPIO_IRQConfig(uint8_t IRQNumber,uint8_t IRQPriority, uint8_t EnorDi);
+void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);
 void GPIO_IRQHandling(uint8_t PinNumber);  // When interrupt occurs,this function can be called to process the interrupt
-
+void GPIO_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority);
 
 
 #endif /* INC_STM32F446XX_GPIO_DRIVER_H_ */

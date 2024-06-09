@@ -12,9 +12,9 @@
 #include "stm32f446xx_gpio_driver.h"
 
 
-#define LOW 0
 #define BTN_PRESSED LOW
 
+#define LOW 0
 void delay(void)
 {
 	for(uint32_t i =0; i<50000/2 ;i++);  // implementing software delay

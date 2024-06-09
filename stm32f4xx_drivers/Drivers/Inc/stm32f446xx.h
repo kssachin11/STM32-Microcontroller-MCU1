@@ -13,6 +13,39 @@
 
 #define __vo volatile
 
+
+
+/**********************************START:Processor Specific Details **********************************/
+/*
+ * ARM Cortex Mx Processor NVIC ISERx register Addresses
+ */
+
+#define NVIC_ISER0          ( (__vo uint32_t*)0xE000E100 )
+#define NVIC_ISER1          ( (__vo uint32_t*)0xE000E104 )
+#define NVIC_ISER2          ( (__vo uint32_t*)0xE000E108 )
+#define NVIC_ISER3          ( (__vo uint32_t*)0xE000E10c )
+
+
+/*
+ * ARM Cortex Mx Processor NVIC ICERx register Addresses
+ */
+#define NVIC_ICER0 			((__vo uint32_t*)0XE000E180)
+#define NVIC_ICER1			((__vo uint32_t*)0XE000E184)
+#define NVIC_ICER2  		((__vo uint32_t*)0XE000E188)
+#define NVIC_ICER3			((__vo uint32_t*)0XE000E18C)
+
+
+/*
+ * ARM Cortex Mx Processor Priority Register Address Calculation
+ */
+#define NVIC_PR_BASE_ADDR 	((__vo uint32_t*)0xE000E400)
+
+/*
+ * ARM Cortex Mx Processor number of priority bits implemented in Priority Register
+ */
+#define NO_PR_BITS_IMPLEMENTED  	4
+
+
 // DEFINING BASE ADDRESS OF VARIOUS MEMORIES - FLASH AND SRAM
 
 #define FLASH_BASEADDR			0x08000000U  // MAIN MEMORY
@@ -124,6 +157,35 @@ typedef struct{
 
 
 /*
+ * peripheral register definition structure for EXTI
+ */
+typedef struct
+{
+	__vo uint32_t IMR;
+	__vo uint32_t EMR;
+	__vo uint32_t RTSR;
+	__vo uint32_t FTSR;
+	__vo uint32_t SWIER;
+	__vo uint32_t PR;
+
+}EXTI_RegDef_t;
+
+
+/*
+ * peripheral register definition structure for SYSCFG
+ */
+typedef struct
+{
+	__vo uint32_t MEMRMP;       /*!< Give a short description,                    Address offset: 0x00      */
+	__vo uint32_t PMC;          /*!< TODO,     									  Address offset: 0x04      */
+	__vo uint32_t EXTICR[4];    /*!< TODO , 									  Address offset: 0x08-0x14 */
+	uint32_t      RESERVED1[2];  /*!< TODO          							  Reserved, 0x18-0x1C    	*/
+	__vo uint32_t CMPCR;        /*!< TODO         								  Address offset: 0x20      */
+	uint32_t      RESERVED2[2];  /*!<                                             Reserved, 0x24-0x28 	    */
+	__vo uint32_t CFGR;         /*!< TODO                                         Address offset: 0x2C   	*/
+} SYSCFG_RegDef_t;
+
+/*
  * Peripheral definitions (Peripheral base addresses typecasted to xxx_RegDef_t
  */
 #define GPIOA 				 ((GPIO_RegDef_t*)GPIOA_BASEADDR) // to define macro, TYPE CASTING GPIOA TO GPIO
@@ -137,6 +199,9 @@ typedef struct{
 
 #define RCC				 	 ((RCC_RegDef_t*)RCC_BASEADDR)
 
+#define EXTI				 ((EXTI_RegDef_t*)EXTI_BASEADDR)
+
+#define SYSCFG 				((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
 /*
  * Clock enable macros for GPIOx peripherals
 
@@ -181,7 +246,7 @@ typedef struct{
  * Clock enable macros for SYSCFG peripherals
 
  */
-#define SYSCFG_PCLK_EN()					(RCC->APBENR |=(1<<14)
+#define SYSCFG_PCLK_EN()					(RCC->APB1ENR |=(1<<14))
 
 
 
@@ -249,6 +314,40 @@ typedef struct{
 #define GPIOF_REG_RESET()					do{(RCC->AHB1RSTR|=(1<<5));		(RCC->AHB1RSTR &= ~(1<<5));}while(0)
 #define GPIOG_REG_RESET()					do{(RCC->AHB1RSTR|=(1<<6));		(RCC->AHB1RSTR &= ~(1<<6));}while(0)
 #define GPIOH_REG_RESET()					do{(RCC->AHB1RSTR|=(1<<7));		(RCC->AHB1RSTR &= ~(1<<7));}while(0)
+
+/*
+ * This macro returns a code( between 0 to 7) for a given GPIO base address(x)
+ */
+#define GPIO_BASEADDR_TO_CODE(x)				((x == GPIOA)?0:\
+											(x == GPIOB)?1:\
+											(x == GPIOC)?2:\
+										    (x == GPIOD)?3:\
+										    (x == GPIOE)?4:\
+										    (x == GPIOF)?5:\
+										    (x == GPIOG)?6:\
+										    (x == GPIOH)?7:0		)		// if x== GPIOA ,return 0,else check for
+																						// C-conditional operators
+
+
+
+
+/*
+ * IRQ(Interrupt Request) Numbers of STM32F407x MCU
+ * NOTE: update these macros with valid values according to your MCU
+ * TODO: You may complete this list for other peripherals
+ */
+
+#define IRQ_NO_EXTI0 		6
+#define IRQ_NO_EXTI1 		7
+#define IRQ_NO_EXTI2 		8
+#define IRQ_NO_EXTI3 		9
+#define IRQ_NO_EXTI4 		10
+#define IRQ_NO_EXTI9_5 		23
+#define IRQ_NO_EXTI15_10 	40
+
+
+
+
 //some generic macros
 
 #define ENABLE					1
@@ -258,8 +357,8 @@ typedef struct{
 #define GPIO_PIN_SET			SET
 #define GPIO_PIN_RESET			RESET
 
+//#include "stm32f446xx_gpio_driver.h"
 
-#include "stm32f446xx_gpio_driver.h"
 
 #endif /* INC_STM32F446XX_H_ */
 
