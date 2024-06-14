@@ -185,6 +185,27 @@ typedef struct
 	__vo uint32_t CFGR;         /*!< TODO                                         Address offset: 0x2C   	*/
 } SYSCFG_RegDef_t;
 
+
+/*
+ * peripheral register definition structure for SPI
+ */
+
+
+typedef struct
+{
+		__vo uint32_t CR1;        /*!< TODO,     										Address offset: 0x00 */
+		__vo uint32_t CR2;        /*!< TODO,     										Address offset: 0x04 */
+		__vo uint32_t SR;         /*!< TODO,     										Address offset: 0x08 */
+		__vo uint32_t DR;         /*!< TODO,     										Address offset: 0x0C */
+		__vo uint32_t CRCPR;      /*!< TODO,     										Address offset: 0x10 */
+		__vo uint32_t RXCRCR;     /*!< TODO,     										Address offset: 0x14 */
+		__vo uint32_t TXCRCR;     /*!< TODO,     										Address offset: 0x18 */
+		__vo uint32_t I2SCFGR;    /*!< TODO,     										Address offset: 0x1C */
+		__vo uint32_t I2SPR;      /*!< TODO,											Address offset: 0*/
+
+}SPI_RegDef_t;
+
+
 /*
  * Peripheral definitions (Peripheral base addresses typecasted to xxx_RegDef_t
  */
@@ -202,6 +223,12 @@ typedef struct
 #define EXTI				 ((EXTI_RegDef_t*)EXTI_BASEADDR)
 
 #define SYSCFG 				((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
+
+#define SPI1				((SPI_RegDef_t*)SPI1_BASEADDR)
+#define SPI2				((SPI_RegDef_t*)SPI2_BASEADDR)
+#define SPI3				((SPI_RegDef_t*)SPI3_BASEADDR)
+#define SPI4				((SPI_RegDef_t*)SPI4_BASEADDR)
+
 /*
  * Clock enable macros for GPIOx peripherals
 
@@ -363,7 +390,7 @@ typedef struct
 #define GPIO_PIN_RESET			RESET
 
 //#include "stm32f446xx_gpio_driver.h"
-
+//#include "stm32f446xx_spi_driver.h"
 
 #endif /* INC_STM32F446XX_H_ */
 
