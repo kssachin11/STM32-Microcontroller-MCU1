@@ -254,10 +254,10 @@ typedef struct
  * Clock enable macros for SPIx peripherals
 
  */
-#define SPI1_PCLK_EN()					(RCC->APB2ENR |=(1<<12)
-#define SPI2_PCLK_EN()					(RCC->APB1ENR |=(1<<14)
-#define SPI3_PCLK_EN()					(RCC->APB1ENR |=(1<<15)
-#define SPI4_PCLK_EN()					(RCC->APB2ENR |=(1<<13)
+#define SPI1_PCLK_EN()					(RCC->APB2ENR |=(1<<12))
+#define SPI2_PCLK_EN()					(RCC->APB1ENR |=(1<<14))
+#define SPI3_PCLK_EN()					(RCC->APB1ENR |=(1<<15))
+#define SPI4_PCLK_EN()					(RCC->APB2ENR |=(1<<13))
 
 /*
  * Clock enable macros for UARTx peripherals
@@ -306,10 +306,10 @@ typedef struct
  * Clock disable macros for SPIx peripherals
 
  */
-#define SPI1_PCLK_DN()					(RCC->APB2ENR &= ~(1<<12)
-#define SPI2_PCLK_DN()					(RCC->APB1ENR &= ~(1<<14)
-#define SPI3_PCLK_DN()					(RCC->APB1ENR &= ~(1<<15)
-#define SPI4_PCLK_DN()					(RCC->APB2ENR &= ~(1<<13)
+#define SPI1_PCLK_DN()					(RCC->APB2ENR &= ~(1<<12))
+#define SPI2_PCLK_DN()					(RCC->APB1ENR &= ~(1<<14))
+#define SPI3_PCLK_DN()					(RCC->APB1ENR &= ~(1<<15))
+#define SPI4_PCLK_DN()					(RCC->APB2ENR &= ~(1<<13))
 
 /*
  * Clock disable macros for UARTx peripherals
@@ -389,8 +389,32 @@ typedef struct
 #define GPIO_PIN_SET			SET
 #define GPIO_PIN_RESET			RESET
 
-//#include "stm32f446xx_gpio_driver.h"
-//#include "stm32f446xx_spi_driver.h"
+
+
+/******************************************************************************************
+ *Bit position definitions of SPI peripheral
+ ******************************************************************************************/
+/*
+ * Bit position definitions SPI_CR1 - values depends bit position on register CR1
+ */
+#define SPI_CR1_CPHA     				 0
+#define SPI_CR1_CPOL      				 1
+#define SPI_CR1_MSTR     				 2
+#define SPI_CR1_BR   					 3
+#define SPI_CR1_SPE     				 6
+#define SPI_CR1_LSBFIRST   			 	 7
+#define SPI_CR1_SSI     				 8
+#define SPI_CR1_SSM      				 9
+#define SPI_CR1_RXONLY      		 	10
+#define SPI_CR1_DFF     			 	11
+#define SPI_CR1_CRCNEXT   			 	12
+#define SPI_CR1_CRCEN   			 	13
+#define SPI_CR1_BIDIOE     			 	14
+#define SPI_CR1_BIDIMODE      			15
+
+
+#include "stm32f446xx_gpio_driver.h"
+#include "stm32f446xx_spi_driver.h"
 
 #endif /* INC_STM32F446XX_H_ */
 
