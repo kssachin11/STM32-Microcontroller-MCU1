@@ -92,6 +92,13 @@ typedef struct
 #define SPI_SSM_DI     0
 
 /*
+ * SPI related status flags definitions
+ */
+#define SPI_TXE_FLAG    ( 1 << SPI_SR_TXE)
+#define SPI_RXNE_FLAG   ( 1 << SPI_SR_RXNE)
+#define SPI_BUSY_FLAG   ( 1 << SPI_SR_BSY)
+
+/*
  * Init and Deinit
  */
 void SPI_Init(SPI_Handle_t *pSPIHandle);  // API for initializing GPIO port
@@ -116,5 +123,12 @@ void SPI_ReceiveData(SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
 void SPI_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);
 void SPI_IRQHandling(uint8_t PinNumber);  // When interrupt occurs,this function can be called to process the interrupt
 void SPI_IRQPriorityConfig(SPI_Handle_t *pHandle);
+
+
+/*
+ * Other Peripheral control API
+ */
+
+void SPI_PeripheralControl(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 
 #endif /* INC_STM32F446XX_SPI_DRIVER_H_ */

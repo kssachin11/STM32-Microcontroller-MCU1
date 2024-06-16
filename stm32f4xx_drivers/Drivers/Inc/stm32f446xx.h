@@ -342,6 +342,15 @@ typedef struct
 #define GPIOG_REG_RESET()					do{(RCC->AHB1RSTR|=(1<<6));		(RCC->AHB1RSTR &= ~(1<<6));}while(0)
 #define GPIOH_REG_RESET()					do{(RCC->AHB1RSTR|=(1<<7));		(RCC->AHB1RSTR &= ~(1<<7));}while(0)
 
+
+/*
+ * MACROS TO RESET SPIx PERIPHERALS
+ *
+ */
+#define SPI1_REG_RESET()					do{(RCC->APB2RSTR|=(1<<12));		(RCC->APB2RSTR &= ~(1<<12));}while(0)
+#define SPI2_REG_RESET()					do{(RCC->APB1RSTR|=(1<<14));		(RCC->APB1RSTR &= ~(1<<14));}while(0)
+#define SPI4_REG_RESET()					do{(RCC->APB2RSTR|=(1<<13));		(RCC->APB2RSTR &= ~(1<<13));}while(0)
+#define SPI3_REG_RESET()					do{(RCC->APB1RSTR|=(1<<15));		(RCC->APB1RSTR &= ~(1<<15));}while(0)
 /*
  * This macro returns a code( between 0 to 7) for a given GPIO base address(x)
  */
@@ -388,7 +397,8 @@ typedef struct
 #define RESET					DISABLE
 #define GPIO_PIN_SET			SET
 #define GPIO_PIN_RESET			RESET
-
+#define FLAG_RESET				RESET
+#define FLAG_SET				SET
 
 
 /******************************************************************************************
@@ -412,6 +422,31 @@ typedef struct
 #define SPI_CR1_BIDIOE     			 	14
 #define SPI_CR1_BIDIMODE      			15
 
+
+/*
+ * Bit position definitions SPI_CR2
+ */
+#define SPI_CR2_RXDMAEN		 			0
+#define SPI_CR2_TXDMAEN				 	1
+#define SPI_CR2_SSOE				 	2
+#define SPI_CR2_FRF						4
+#define SPI_CR2_ERRIE					5
+#define SPI_CR2_RXNEIE				 	6
+#define SPI_CR2_TXEIE					7
+
+
+/*
+ * Bit position definitions SPI_SR
+ */
+#define SPI_SR_RXNE						0
+#define SPI_SR_TXE				 		1
+#define SPI_SR_CHSIDE				 	2
+#define SPI_SR_UDR					 	3
+#define SPI_SR_CRCERR				 	4
+#define SPI_SR_MODF					 	5
+#define SPI_SR_OVR					 	6
+#define SPI_SR_BSY					 	7
+#define SPI_SR_FRE					 	8
 
 #include "stm32f446xx_gpio_driver.h"
 #include "stm32f446xx_spi_driver.h"
