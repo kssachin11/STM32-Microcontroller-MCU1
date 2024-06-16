@@ -236,3 +236,51 @@ void SPI_PeripheralControl(SPI_RegDef_t *pSPIx, uint8_t EnOrDi)
 
 
 }
+
+/*********************************************************************
+ * @fn      		  - SPI_ssi_config
+ *
+ * @brief             -
+ *
+ * @param[in]         -
+ * @param[in]         -
+ * @param[in]         -
+ *
+ * @return            -
+ *
+ * @Note              -*/
+void SPI_SSIConfig(SPI_RegDef_t *pSPIx, uint8_t EnOrDi)
+{
+	if(EnOrDi == ENABLE)
+		{
+			pSPIx->CR1 |=  (1 << SPI_CR1_SSI);
+		}else
+		{
+			pSPIx->CR1 &=  ~(1 << SPI_CR1_SSI);
+		}
+
+}
+
+/*********************************************************************
+ * @fn      		  - SPI_ssoe_config
+ *
+ * @brief             -
+ *
+ * @param[in]         -
+ * @param[in]         -
+ * @param[in]         -
+ *
+ * @return            -
+ *
+ * @Note              -*/
+void SPI_SSOEConfig(SPI_RegDef_t *pSPIx, uint8_t EnOrDi)
+{
+	if(EnOrDi == ENABLE)
+		{
+			pSPIx->CR1 |=  (1 << SPI_CR2_SSOE);
+		}else
+		{
+			pSPIx->CR1 &=  ~(1 << SPI_CR2_SSOE);
+		}
+
+}
