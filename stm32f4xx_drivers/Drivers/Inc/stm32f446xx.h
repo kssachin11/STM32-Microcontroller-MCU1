@@ -207,6 +207,23 @@ typedef struct
 
 
 /*
+ * peripheral register definition structure for USART
+ */
+
+typedef struct
+{
+	__vo uint32_t SR;
+	__vo uint32_t DR;
+	__vo uint32_t BRR;
+	__vo uint32_t CR1;
+	__vo uint32_t CR2;
+	__vo uint32_t CR3;
+	__vo uint32_t GTPR;
+		
+			
+}USART_RegDef_t;
+
+/*
  * Peripheral definitions (Peripheral base addresses typecasted to xxx_RegDef_t
  */
 #define GPIOA 				 ((GPIO_RegDef_t*)GPIOA_BASEADDR) // to define macro, TYPE CASTING GPIOA TO GPIO
@@ -229,6 +246,13 @@ typedef struct
 #define SPI3				((SPI_RegDef_t*)SPI3_BASEADDR)
 #define SPI4				((SPI_RegDef_t*)SPI4_BASEADDR)
 
+
+#define USART1				((USART_RegDef_t*)USART1_BASEADDR)
+#define USART2				((USART_RegDef_t*)USART2_BASEADDR)
+#define USART3				((USART_RegDef_t*)USART3_BASEADDR)
+#define UART4				((USART_RegDef_t*)UART4_BASEADDR)
+#define UART5				((USART_RegDef_t*)UART5_BASEADDR)
+#define USART6				((USART_RegDef_t*)USART6_BASEADDR)
 /*
  * Clock enable macros for GPIOx peripherals
 
@@ -263,11 +287,12 @@ typedef struct
  * Clock enable macros for UARTx peripherals
 
  */
+#define USART1_PCLK_EN()					(RCC->APB2ENR |=(1<<4))
 #define USART2_PCLK_EN()					(RCC->APB1ENR |=(1<<17)
 #define USART3_PCLK_EN()					(RCC->APB1ENR |=(1<<18)
 #define UART4_PCLK_EN()						(RCC->APB1ENR |=(1<<19)
 #define UART5_PCLK_EN()						(RCC->APB1ENR |=(1<<20)
-
+#define USART6_PCLK_EN()					(RCC->APB2ENR |=(1<<5))
 
 /*
  * Clock enable macros for SYSCFG peripherals
@@ -315,11 +340,12 @@ typedef struct
  * Clock disable macros for UARTx peripherals
 
  */
+#define USART1_PCLK_DN()					(RCC->APB2ENR &= ~(1<<4))
 #define USART2_PCLK_DN()					(RCC->APB1ENR &= ~(1<<17)
 #define USART3_PCLK_DN()					(RCC->APB1ENR &= ~(1<<18)
 #define UART4_PCLK_DN()						(RCC->APB1ENR &= ~(1<<19)
 #define UART5_PCLK_DN()						(RCC->APB1ENR &= ~(1<<20)
-
+#define USART6_PCLK_DN()					(RCC->APB2ENR &= ~(1<<5))
 
 /*
  * Clock disable macros for SYSCFG peripherals
